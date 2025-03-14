@@ -17,6 +17,17 @@ const Index = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Scroll to section if hash is present in URL
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
