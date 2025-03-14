@@ -3,11 +3,17 @@ import React from 'react';
 
 const PortfolioItem = ({ imageSrc, title }: { imageSrc: string; title: string }) => {
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-      <div className="aspect-square bg-gray-100 relative">
+    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 group">
+      <div className="aspect-square bg-gray-100 relative overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-          {imageSrc ? <img src={imageSrc} alt={title} className="w-full h-full object-cover" /> : "Portfolio Image"}
+          {imageSrc ? 
+            <img src={imageSrc} alt={title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /> : 
+            "Portfolio Image"
+          }
         </div>
+        
+        {/* Image overlay with shadow gradient at bottom */}
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       <div className="p-4">
         <h3 className="font-semibold text-lg">{title}</h3>

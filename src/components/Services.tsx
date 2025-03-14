@@ -13,11 +13,25 @@ const ServiceCard = ({
   icon: React.ElementType;
 }) => {
   return (
-    <div className={`${className} rounded-lg p-6 flex flex-col items-center justify-center h-[140px] card-hover shadow-md relative overflow-hidden`}>
+    <div className={`${className} rounded-lg p-6 flex flex-col items-center justify-center h-[140px] card-hover shadow-md relative overflow-hidden group`}>
+      {/* Background icon with shadow and opacity */}
       <div className="absolute inset-0 opacity-10 flex items-center justify-center">
         <Icon size={80} strokeWidth={1} />
       </div>
-      <h3 className="text-xl font-bold mb-2 text-white z-10">{title}</h3>
+      
+      {/* Shadowing effect - dark gradient overlay at the bottom */}
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/30 to-transparent opacity-60"></div>
+      
+      {/* Highlight effect - light gradient overlay at the top */}
+      <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-white/30 to-transparent opacity-40"></div>
+      
+      {/* Right side shading */}
+      <div className="absolute top-0 right-0 w-1/5 h-full bg-gradient-to-l from-black/20 to-transparent"></div>
+      
+      {/* Left side highlight */}
+      <div className="absolute top-0 left-0 w-1/5 h-full bg-gradient-to-r from-white/20 to-transparent"></div>
+      
+      <h3 className="text-xl font-bold mb-2 text-white z-10 drop-shadow-sm">{title}</h3>
     </div>
   );
 };
