@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Services from '@/components/Services';
 import Footer from '@/components/Footer';
+import Portfolio from '@/components/Portfolio';
+import PricingPlans from '@/components/PricingPlans';
 
 const ServicesPage = () => {
   // Scroll to top on page load
@@ -23,6 +25,8 @@ const ServicesPage = () => {
           </div>
         </div>
         <Services />
+        <Portfolio />
+        <PricingPlans />
       </main>
       <Footer />
     </div>
