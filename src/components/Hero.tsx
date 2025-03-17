@@ -43,17 +43,13 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Right Content - Phone */}
+          {/* Right Content - New Image */}
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
             <div 
               ref={phoneRef} 
               className="relative"
               style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out 0.5s forwards' }}
             >
-              <div className="absolute top-[-20px] right-[-10px] bg-white rounded-full px-4 py-2 shadow-lg z-10 border border-gray-100">
-                <span className="font-bold">Simply convert</span>
-              </div>
-              
               <div className="absolute bottom-[-10px] left-[-30px] bg-white rounded-full px-4 py-2 shadow-lg z-10 border border-gray-100">
                 <div className="flex items-center space-x-1">
                   <span className="font-bold">4.9</span>
@@ -68,9 +64,9 @@ const Hero = () => {
               </div>
               
               <img 
-                src="/lovable-uploads/03128cd1-0363-47ba-ad87-e1c84c85a774.png" 
-                alt="Mobile app showcase" 
-                className="w-[280px] md:w-[320px] h-auto rounded-3xl shadow-xl"
+                src="/lovable-uploads/66040a4e-2ec3-4420-83a0-cd79922faadb.png" 
+                alt="Turning ideas into brands" 
+                className="w-[320px] md:w-[380px] h-auto"
               />
             </div>
           </div>
