@@ -1,105 +1,165 @@
 
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
 
 const Hero = () => {
-  const phoneRef = useRef<HTMLDivElement>(null);
-  
-  // Simulating loading of phone image
+  const heroRef = useRef(null);
+  const imageRef = useRef(null);
+  const textRef = useRef(null);
+
   useEffect(() => {
-    if (phoneRef.current) {
-      phoneRef.current.classList.add('animate-float');
-    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-in");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (heroRef.current) observer.observe(heroRef.current);
+    if (imageRef.current) observer.observe(imageRef.current);
+    if (textRef.current) observer.observe(textRef.current);
+
+    return () => {
+      if (heroRef.current) observer.unobserve(heroRef.current);
+      if (imageRef.current) observer.unobserve(imageRef.current);
+      if (textRef.current) observer.unobserve(textRef.current);
+    };
   }, []);
 
   return (
-    <section className="pt-28 pb-16 bg-gradient-to-br from-[#f3f4f6] to-[#e5e7eb] overflow-hidden relative">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center justify-between">
-          {/* Left Content */}
-          <div className="w-full lg:w-1/2 lg:pr-12 mb-10 lg:mb-0">
-            <div className="inline-block px-3 py-1 bg-[#e9f8e1] text-[#7BC142] rounded-full font-medium text-sm mb-4 animate-fade-in">
-              <span className="font-bold">#Popular</span> brands
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              <span className="text-black">turning</span><br />
-              <span className="text-black">ideas</span><br />
-              <span className="text-black">into</span>
-            </h1>
-            <div className="animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              <p className="text-lg md:text-xl text-gray-700 mb-8 mt-4">
-                Create to <strong>INSPIRE</strong>
-                <br/>
-                <span className="text-sm text-gray-500">with the best tools</span>
-              </p>
-              
-              <p className="text-md md:text-lg mb-8">
-                <strong>Redefining connections in Ethiopia's digital landscape.</strong> Platform with state-of-the-art digital solutions for emerging businesses. A new standard of branding excellence, we craft stories that captivate, connect, and convert.
-              </p>
-              
-              <button className="btn-primary">
-                Learn More
-              </button>
-            </div>
+    <section>
+      <section
+        id="home"
+        className="relative pt-16 pb-16 md:pt-20 lg:pt-24 md:pb-24 bg-[#ffffff] overflow-hidden"
+        ref={heroRef}
+      >
+        <div className="relative w-full max-w-[90rem] mx-auto">
+          {/* Background Image */}
+          <div className="absolute inset-0 w-full h-full">
+            <img
+              src="/lovable-uploads/c7aab15b-9b11-45ba-b43f-8fbdfe81c876.png"
+              alt="Background"
+              className="w-full h-full object-fill"
+            />
           </div>
-          
-          {/* Right Content - New Image */}
-          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
-            <div 
-              ref={phoneRef} 
-              className="relative"
-              style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out 0.5s forwards' }}
+
+          {/* Content */}
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 py-8 md:py-0">
+            {/* Text Content - Left Side */}
+            <div
+              className="w-full md:w-1/2 opacity-0 mb-20 md:mb-40 lg:mb-60 md:ml-0 lg:ml-20"
+              ref={textRef}
+              style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}
             >
-              <div className="absolute bottom-[-10px] left-[-30px] bg-white rounded-full px-4 py-2 shadow-lg z-10 border border-gray-100">
-                <div className="flex items-center space-x-1">
-                  <span className="font-bold">4.9</span>
-                  <div className="flex">
-                    {[1, 2, 3, 4, 5].map((_, i) => (
-                      <svg key={i} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                      </svg>
-                    ))}
+              <div className="relative text-center md:text-left max-w-[70rem] py-4 md:py-8 lg:py-12 md:ml-8 lg:ml-40">
+                {/* Turning Text */}
+                <p className="text-3xl sm:text-4xl md:text-[3rem] lg:text-[5rem] font-semibold leading-none tracking-wider sm:tracking-[0.15em] lg:tracking-[0.2em] -mb-1 md:-mb-2">
+                  turning
+                </p>
+
+                {/* Ideas Box */}
+                <div className="relative inline-block transform rotate-3 -mt-1 ml-4 sm:ml-6 md:ml-8 lg:ml-10">
+                  <div className="bg-white border-[2px] border-[#00008B] rounded-xl px-3 sm:px-4 md:px-5 lg:px-6 py-1 md:py-2 shadow-[0px_0px_0_0_rgba(0,0,0,1)]">
+                    <p className="text-3xl sm:text-4xl md:text-[40px] lg:text-[56px] font-black tracking-wide sm:tracking-[0.15em] lg:tracking-[0.2em] leading-tight">
+                      Ideas
+                    </p>
                   </div>
                 </div>
+
+                {/* Into Text */}
+                <p className="text-3xl sm:text-4xl md:text-[42px] lg:text-[64px] font-semibold leading-none -mt-2 md:-mt-3 tracking-wide sm:tracking-[0.15em] lg:tracking-[0.2em] ml-8 sm:ml-12 md:ml-16 lg:ml-20">
+                  into
+                </p>
+
+                {/* Popular Tag */}
+                <div className="inline-block bg-[#9FE65C] border-[2px] border-[#00008B] rounded-xl px-4 sm:px-6 md:px-7 lg:px-8 py-1 md:py-2 shadow-[0px_0px_0_0_rgba(0,0,0,1)] -mt-2 ml-6 sm:ml-8 md:ml-10 lg:ml-11">
+                  <p className="text-xl sm:text-2xl md:text-[28px] lg:text-[36px] font-normal tracking-wide sm:tracking-[0.08em] lg:tracking-[0.1em]">
+                    # Popular
+                  </p>
+                </div>
+
+                {/* Brands Text */}
+                <div className="relative -mt-4 md:-mt-5 lg:-mt-7">
+                  <p className="text-3xl sm:text-4xl md:text-[3rem] lg:text-[5rem] font-semibold leading-none tracking-wide sm:tracking-[0.2em] lg:tracking-[0.3em] ml-2 sm:ml-3 lg:ml-4">
+                    brands
+                  </p>
+                  <div className="absolute left-6 -bottom-4 md:-bottom-6 w-6 md:w-8 h-[6px] md:h-[8px] bg-[#3B82F6] -translate-x-1/2"></div>
+                </div>
               </div>
-              
-              <img 
-                src="/lovable-uploads/66040a4e-2ec3-4420-83a0-cd79922faadb.png" 
-                alt="Turning ideas into brands" 
-                className="w-[320px] md:w-[380px] h-auto"
+            </div>
+
+            {/* Megaphone Image - Right Side */}
+            <div
+              className="w-full md:w-1/2 relative flex justify-center md:justify-end opacity-0 mt-4 sm:mt-6 md:mt-0 md:mr-4 lg:mr-40"
+              ref={imageRef}
+              style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
+            >
+              <img
+                src="/megaphone.png"
+                alt="Megaphone Announcement"
+                className="w-[80%] sm:w-[70%] md:w-[85%] lg:w-[56rem] object-contain transform scale-100 md:scale-110"
               />
             </div>
           </div>
+
+          {/* Person with Phone Image */}
+          <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 md:-translate-x-1/3 z-20 hidden md:block">
+            <img
+              src="/downward-arrow.png"
+              alt="Person with Phone"
+              className="w-[200px] md:w-[300px] h-auto"
+            />
+          </div>
         </div>
-      </div>
+
+        {/* Create to INSPIRE Section */}
+        <div className="relative z-10 mt-10 px-4">
+          <p className="text-center text-3xl sm:text-4xl md:text-5xl font-bold md:ml-40 lg:ml-80 mb-3 md:mb-5 tracking-wide sm:tracking-[0.08em] lg:tracking-[0.1em]" style={{color:"#838383"}}>
+            Create to INSPIRE
+          </p>
+          <p className="text-center text-base sm:text-lg md:text-xl font-medium mb-2 md:mr-6" style={{color:"#838383"}}>
+            WHO ARE WE?
+          </p>
+          <p className="text-center text-base sm:text-lg md:text-xl font-bold mt-2 tracking-wide sm:tracking-[0.06em] lg:tracking-[0.08em]">
+            Redefining connections in <span className="text-xl md:text-2xl tracking-wide sm:tracking-[0.08em] lg:tracking-[0.12em]">Ethiopia's</span> digital landscape.
+          </p>
+          <div className="w-6 md:w-8 h-1 bg-orange-500 mx-auto mt-1"></div>
+        </div>
+      </section>
       
-      {/* Background map overlay */}
-      <div className="absolute bottom-0 left-0 right-0 opacity-20 pointer-events-none">
-        <svg width="100%" height="300" viewBox="0 0 1600 600" xmlns="http://www.w3.org/2000/svg">
-          <path 
-            d="M1506.3,431.5c-16.3,6.9-31.9,15.4-48.8,20.5c-22.7,6.8-46.4,7.9-69.9,9c-49.2,2.2-97.8-3.1-146.6-8.8
-            c-50.3-5.9-100.4-13.8-150.7-20c-67-8.2-134.3-14.3-202-14.3c-63.9,0-127.8,5.5-191.1,14.5c-48.2,6.8-96.1,15.8-144.7,20.2
-            c-35.7,3.2-71.5,3.4-107.3,1.2c-25-1.5-49.9-5.8-74.5-10.6" 
-            stroke="#333" 
-            strokeWidth="1" 
-            fill="none"
+      {/* Second Section with World Map */}
+      <section className="relative flex flex-col items-center justify-center text-center py-12 md:py-20 px-4 bg-white mt-10 md:mt-20">
+        {/* Background Image */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img
+            src="/world-map-bg.png"
+            alt="World Map Background"
+            className="w-full max-w-4xl opacity-70"
           />
-          <path 
-            d="M1406.3,337.5c-30.4,4.3-60.2,11.5-90.8,15c-40.5,4.7-80.3,5.5-120.9,6.2c-85.5,1.5-170.4-2.2-254.9-11.2
-            c-87.5-9.4-175.1-23.6-262.5-34.3c-116.8-14.3-233.4-15.5-349.7-4c-83.8,8.3-167.2,22.8-251.6,27.8C30.1,339.8-12.5,336.7-54.3,328"
-            stroke="#333" 
-            strokeWidth="1" 
-            fill="none"
-          />
-          <circle cx="450" cy="380" r="2" fill="#333" />
-          <circle cx="700" cy="400" r="2" fill="#333" />
-          <circle cx="900" cy="380" r="2" fill="#333" />
-          <circle cx="600" cy="350" r="2" fill="#333" />
-          <circle cx="1000" cy="400" r="2" fill="#333" />
-          <circle cx="1200" cy="380" r="2" fill="#333" />
-          <circle cx="800" cy="430" r="2" fill="#333" />
-        </svg>
-      </div>
+        </div>
+
+        {/* Content */}
+        <div className="relative max-w-sm sm:max-w-md md:max-w-2xl mx-auto">
+          {/* Text Content */}
+          <p className="text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed font-medium">
+            At Pelicans we&apos;re more than just a digital agency—we&apos;re 
+            your partners in growth. Powered by a team of skilled and forward-thinking professionals, we 
+            stay ahead of industry trends to help your brand stand out, connect with your audience, and 
+            achieve your goals.
+          </p>
+
+          {/* Button */}
+          <div className="mt-6"> 
+            <Button className="bg-brand-orange text-white">
+              Learn More
+            </Button>
+          </div>
+        </div>
+      </section>
     </section>
   );
 };

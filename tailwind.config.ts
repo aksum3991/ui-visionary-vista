@@ -19,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			screens: {
+				'xs': '480px',
+				'3xl': '1600px',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -98,11 +102,22 @@ export default {
 						transform: 'translateX(100%)',
 					},
 				},
+				float: {
+					'0%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' },
+					'100%': { transform: 'translateY(0px)' },
+				},
+				fadeIn: {
+					from: { opacity: 0, transform: 'translateY(10px)' },
+					to: { opacity: 1, transform: 'translateY(0)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				shimmer: 'shimmer 2s infinite',
+				float: 'float 6s ease-in-out infinite',
+				'fade-in': 'fadeIn 0.8s ease-out forwards',
 			},
 			backgroundImage: {
 				'dotted-pattern': 'radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
